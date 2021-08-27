@@ -1,0 +1,32 @@
+body {
+  font-family: sans-serif, arial;
+}
+
+.titlebox {
+  border-width: 5px;
+}
+
+.header {
+  background-color: blue;
+  font-style: italic;
+  text-align: center;
+}
+
+.bar {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  text-align: center;
+}
+
+.title {
+  background-color: aqua;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 12px;
+  font-size: large;
+  font-family: fantasy;
+}
+
