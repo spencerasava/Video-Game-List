@@ -11,9 +11,8 @@ class GameInfo extends React.Component {
     return(
       <div>
       <ul>
-        <li>Hours Played: {this.props.game.hours_played}</li>
-        <li>Completed: {this.props.game.completed === 1 ? 'yes' : 'no'}</li>
-        <li>Platinum Trophy: {this.props.game.platinum === 1 ? 'yes' : 'no'}</li>
+        <li>Platform: {this.props.game.platform}</li>
+        <li>Completed: {this.props.game.completed}</li>
       </ul>
       </div>
     )

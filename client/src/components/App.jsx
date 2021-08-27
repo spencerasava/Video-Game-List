@@ -1,8 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import GameList from './GameList.jsx';
 import AddGameBar from './AddGameBar.jsx';
 import SearchBar from './SearchBar.jsx';
+import exampleGameData from '../data/exampleGameData.js'
 
 class App extends React.Component {
   constructor(props) {
@@ -10,12 +10,12 @@ class App extends React.Component {
     this.state = {
       games: [],
     }
-    this.searchGames = this.searchGames.bind(this)
-    this.getGameList = this.getGameList.bind(this)
   }
 
   componentDidMount() {
-
+    this.setState({
+      games: exampleGameData,
+    })
   }
 
 
@@ -23,16 +23,13 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1 className='header'>Playstation 5 Game List!</h1>
-        <button className='header' onClick={this.getGameList}>Refresh</button>
+        <h1 className='header'>Video Game List!</h1>
         <button>Add Game to Library</button>
-        <SearchBar
-          search={this.searchGames}
-          getGames={this.getGameList}
-        />
+        <SearchBar />
         <ul>
           {this.state.games.map(game => <GameList game={game} />)}
         </ul>
+        <AddGameBar />
       </div>
 
     )
