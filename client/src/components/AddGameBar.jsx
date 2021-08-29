@@ -1,5 +1,5 @@
-import React from 'react'
-import axios from 'axios'
+import React from 'react';
+import axios from 'axios';
 
 class AddGameBar extends React.Component {
   constructor(props) {
@@ -9,7 +9,29 @@ class AddGameBar extends React.Component {
       platform: '-',
       completed: '-',
     }
+    this.postNewGame = this.postNewGame.bind(this);
   }
+
+
+  handlePost = (event) => {
+    event.preventDefault()
+    this.postNewGame()
+  }
+
+  postNewGame = (event) => {
+    event.preventDefault();
+    axios.post('/games', {
+      title: this.state.title,
+      platform: this.state.platform,
+      completed: this.state.complete === "Yes" ? true : false,
+    }).then(response => {
+      console.log(response);
+      this.props.getGames();
+    })
+      .catch(error => console.log(error))
+  }
+
+
   render() {
     return (
       <form className='bar'>
@@ -26,7 +48,7 @@ class AddGameBar extends React.Component {
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>
-        <button>Add Game</button>
+        <button onClick={this.postNewGame}>Add Game</button>
       </form>
     )
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import GameList from './GameList.jsx';
 import AddGameBar from './AddGameBar.jsx';
 import SearchBar from './SearchBar.jsx';
@@ -10,13 +11,36 @@ class App extends React.Component {
     this.state = {
       games: [],
     }
+    this.getGames = this.getGames.bind(this);
   }
 
   componentDidMount() {
-    this.setState({
-      games: exampleGameData,
-    })
+    // this.setState({
+    //   games: exampleGameData,
+    // })
+    this.getGames();
+    // console.log(this.state.games)
   }
+
+  // componentDidUpdate(prevProps) {
+  //   this.getGames();
+  // }
+
+  getGames() {
+    axios.get('/games')
+      .then(results => {
+        // console.log(results.data);
+        this.setState({games: results.data});
+        // console.log(this.state.games)
+      })
+      // .catch(console.log);
+  }
+
+  // getGamesTitles() {
+  //   axios.get('/games/titles')
+  //     .then(results =>  console.log(results.data))
+  // }
+
 
 
 
@@ -29,7 +53,7 @@ class App extends React.Component {
         <ul>
           {this.state.games.map(game => <GameList game={game} />)}
         </ul>
-        <AddGameBar />
+        <AddGameBar getGames={this.getGames}/>
       </div>
 
     )
